@@ -1,0 +1,33 @@
+{
+  "name": "apps/web/image-magnifier-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/web/image-magnifier-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/web/image-magnifier-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "apps/web/image-magnifier:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "apps/web/image-magnifier:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "apps/web/image-magnifier:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web/image-magnifier-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "implicitDependencies": ["apps/web/image-magnifier"],
+  "tags": []
+}

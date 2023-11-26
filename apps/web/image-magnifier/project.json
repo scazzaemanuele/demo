@@ -1,7 +1,7 @@
 {
-  "name": "image-magnifier",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/image-magnifier/src",
+  "name": "apps/web/image-magnifier",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web/image-magnifier/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/image-magnifier"
+        "outputPath": "dist/apps/web/image-magnifier"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "image-magnifier:build"
+        "buildTarget": "apps/web/image-magnifier:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "image-magnifier:build:development",
+          "buildTarget": "apps/web/image-magnifier:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "image-magnifier:build:production",
+          "buildTarget": "apps/web/image-magnifier:build:production",
           "hmr": false
         }
       }
@@ -41,14 +41,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "image-magnifier:build"
+        "buildTarget": "apps/web/image-magnifier:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "image-magnifier:build:development"
+          "buildTarget": "apps/web/image-magnifier:build:development"
         },
         "production": {
-          "buildTarget": "image-magnifier:build:production"
+          "buildTarget": "apps/web/image-magnifier:build:production"
         }
       }
     },
@@ -57,14 +57,20 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/image-magnifier"
+        "reportsDirectory": "../../../coverage/apps/web/image-magnifier"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/image-magnifier/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/web/image-magnifier/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "apps/web/image-magnifier:build"
       }
     }
   },
